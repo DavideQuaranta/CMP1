@@ -8,7 +8,7 @@ matrix::matrix(int Ncols, int Nrows, double *els){
 	els_ = els;
 }
 matrix matrix::square(int N) {
-	double els[N][N] = {0.};
+	double els[N][N] = {0};
 	return matrix(N,N,*els);
 }
 matrix matrix::rect(int Ncols, int Nrows) {
@@ -17,7 +17,7 @@ matrix matrix::rect(int Ncols, int Nrows) {
 }
 matrix matrix::diag(int N, double *els) {
 
-	double elements[N][N] = {0.};
+	double elements[N][N] = {0.0};
 	for(int i = 0; i < N; i++){
 		elements[i][i] = els[i];
 	}
@@ -50,7 +50,7 @@ double* matrix::getCol(int i) {
 	double* result = new double[Nrows_];
 	for (int j = 0; j < Nrows_; j++) {
 
-		result[j] = (*(els_ + j) + i);
+		result[j] = *(els_ + i*Ncols_ + j);
 	}
 	return result;
 }
@@ -58,13 +58,13 @@ double* matrix::getCol(int i) {
 double* matrix::getRow(int i) {
 	double* result = new double[Ncols_];
 	for(int j = 0; j < Ncols_; j++) {
-		result[j] = (*(els_ + i) + j);
+		result[j] = *(els_ + i*Ncols_ + j);
 	}
 	return result;
 }
 
 double matrix::getElement(int i, int j) {
-	return (*(els_ + i) + j);
+	return *(els_ + i*Ncols_ + j);
 }
 
 // Setters

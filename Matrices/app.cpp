@@ -2,18 +2,21 @@
 #include <iostream>
 #include "Matrices.h"
 #include <algorithm>
+#include <random>
 
 int main(){
 
     int cols = 3, rows = 3;
-    double mat[rows*cols] = {2.};
-    double value = 2.;
-    // std::fill_n(mat,rows*cols, value);
+    double mat[rows];
 
-    matrix* myMatrix = new matrix(rows, cols, mat);
+    for(int i=0;i<rows;i++){
+      int num = rand();
+      mat[i]=1;
+    }
+
+    matrix* myMatrix = new matrix(matrix::diag(rows, mat));
 
     myMatrix->Print();
-    cout << *(myMatrix->getCol(0) + 1) <<endl;
     delete myMatrix;
     return 0;
 }
